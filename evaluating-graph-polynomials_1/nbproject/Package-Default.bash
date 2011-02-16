@@ -11,8 +11,8 @@ CND_CONF=Default
 CND_DISTDIR=dist
 NBTMPDIR=build/${CND_CONF}/${CND_PLATFORM}/tmp-packaging
 TMPDIRNAME=tmp-packaging
-OUTPUT_PATH=MissingOutputInProject
-OUTPUT_BASENAME=MissingOutputInProject
+OUTPUT_PATH=../cover
+OUTPUT_BASENAME=cover
 PACKAGE_TOP_DIR=evaluating-graph-polynomials1/
 
 # Functions

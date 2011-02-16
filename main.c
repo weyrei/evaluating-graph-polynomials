@@ -189,6 +189,10 @@ void freeW() {
 }
 
 int main(int argc, char** argv) {
+    if(argc<2){
+        fprintf(stderr,"no file specified\n");
+        exit(EXIT_FAILURE);
+    }
     int opt = -1;
     char* filename = (char*) malloc(20 * sizeof (char));
     while ((opt = getopt(argc, argv, "f:")) != -1) {
