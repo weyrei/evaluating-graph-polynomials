@@ -10,7 +10,6 @@
                    displayName="Important Files"
                    projectFiles="false"
                    kind="IMPORTANT_FILES_FOLDER">
-      <itemPath>../Makefile</itemPath>
       <itemPath>evaluating-graph-polynomials_1-Makefile.mk</itemPath>
     </logicalFolder>
   </logicalFolder>
@@ -27,7 +26,7 @@
       </toolsSet>
       <makefileType>
         <makeTool>
-          <buildCommandWorkingDir>..</buildCommandWorkingDir>
+          <buildCommandWorkingDir>../.git/branches</buildCommandWorkingDir>
           <buildCommand>${MAKE} -f Makefile</buildCommand>
           <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
           <executablePath>../cover</executablePath>

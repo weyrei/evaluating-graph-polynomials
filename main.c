@@ -1,4 +1,4 @@
-/* 
+ /* 
  * File:   main.c
  * Author: Reinhard Weyand
  *
@@ -13,7 +13,7 @@
 #include <unistd.h>
 
 #define MAXL 10 //max length of directed paths
-#define MAXN  10 //max # of vertices
+#define MAXN  100 //max # of vertices
 int n;
 int adj[MAXN][MAXN];
 int pow2; //2 to the power of n
@@ -50,7 +50,8 @@ int mypow(int X) {
     return ret;
 }
 
-void computeWValue(int s) {         //approach through dynamic programming. a little hard, i think
+void computeWValue(int s) {//approach through dynamic programming. a little hard, i think
+    
     int i, j, l, v;
     /*   int*** a = (int***) malloc(n*sizeof(int**));
      *a = (int**) malloc(n*n*sizeof(int*));
@@ -85,15 +86,12 @@ void computeWValue(int s) {         //approach through dynamic programming. a li
                 }
             }
         }
+        
     }
 
 
-    printf("----------------------------\n");
-    for (i = 0; i < n; i++) {
-        for (j = 0; j < n; j++) {
-            printf("idx: %d,%d   val: %d\n", i, j, w[s][i][j][3]);
-        }
-    }
+        
+    
 
 }
 
@@ -115,7 +113,7 @@ void parseGraph(char* filename) {
                 fprintf(stderr, "value different from 1 or 0 in adjacency matrix\n");
                 exit(EXIT_FAILURE);
             } else {
-                printf("indice: %d, %d, val: %d\n", j, i, e);
+    //            printf("parsing indice: %d, %d, val: %d, %d nodes\n", j, i, e,n);
                 adj[j][i] = e;
                 j = j + (i == (n - 1) ? 1 : 0);
                 i = (i + 1) % n;
@@ -130,11 +128,9 @@ void computeC() { //fast moebius inversion
     int S, j;
     int**a = (int**) malloc(pow2 * sizeof (int*));
     for (S = 0; S < pow2; S++) {
-        printf("S=%d\n",S);
         a[S] = (int*) malloc((n + 1) * sizeof (int));
         a[S][0] = w[S][minElem(S)][minElem(S)][getNumOfNodes(S)];
         for (j = 1; j < n; j++) {
-            printf("j=%d\n",j);
             if ((1 << j) & S)
                 a[S][j] = a[S][j - 1] - a[S^(1 << j)][j - 1];
             else
@@ -150,6 +146,7 @@ void computeC() { //fast moebius inversion
 }
 
 void computeP() {       //fast moebius inversion
+    printf("started computing P\n");
     int S, j, s, t;
     int sum = 0;
     int**a = (int**) malloc(pow2 * sizeof (int*));
@@ -172,6 +169,7 @@ void computeP() {       //fast moebius inversion
         free(a[S]);
     }
     free(a);
+    printf("succesfully computed P\n");
 }
 
 void freeW() {
@@ -209,9 +207,12 @@ int main(int argc, char** argv) {
     c = (int*) malloc(pow2 * sizeof (int));
     p = (int*) malloc(pow2 * sizeof (int));
     int S;
+    printf("starting to compute W\n");
     for (S = 0; S < pow2; S++) {
         computeWValue(S);
     }
+    printf("%d\n",w[pow2-1][3][10][2]);
+    printf("succesfully computed W\n");
     computeC();
     computeP();
 
