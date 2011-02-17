@@ -53,14 +53,14 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	cd ../.git/branches && ${MAKE} -f Makefile
+	cd /home/reinhard/Dokumente/evaluating-graph-polynomials && ${MAKE} -f Makefile cover
 
 # Subprojects
 .build-subprojects:
 
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
-	cd ../.git/branches && ${MAKE} -f Makefile clean
+	cd /home/reinhard/Dokumente/evaluating-graph-polynomials && ${MAKE} -f Makefile clean
 
 # Subprojects
 .clean-subprojects:
